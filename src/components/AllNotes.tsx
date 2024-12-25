@@ -1,8 +1,15 @@
 const AllNotes = () => {
-  console.log(localStorage.getItem("allNotes"));
+  const allNotes: Array<any> = JSON.parse(
+    localStorage.getItem("allNotes") || "[]"
+  );
+
   return (
     <>
-      <div>All Notes</div>
+      {allNotes?.map(
+        (note) => (
+          console.log("test", note), (<div key={note.id}>{note.title}</div>)
+        )
+      )}
     </>
   );
 };

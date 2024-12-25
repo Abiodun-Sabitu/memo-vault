@@ -9,6 +9,8 @@ const NewNotes: React.FC = () => {
   const [categories, setCategories] = useState<string[]>([]); // Pre-saved items
   const [category, setCategory] = useState<string | null>(null); // Selected category
   const [color, setColor] = useState<string>("#ffffff"); // Selected color
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
 
   useEffect(() => {
     const defaultCategories: string[] = [
@@ -41,8 +43,8 @@ const NewNotes: React.FC = () => {
 
     const createdNote = {
       id: newId,
-      title: values.title,
-      content: values.content,
+      title,
+      content,
       category, // User-selected category
       color, // User-selected color
     };
@@ -64,8 +66,9 @@ const NewNotes: React.FC = () => {
       <Form name="newNoteForm" layout="vertical" onFinish={createNewNote}>
         <h2 style={{ textAlign: "center" }}>Create New Note</h2>
         <Form.Item label="Title" layout="vertical">
-          <Input />
+          <Input name="title" onChange={(e) => setTitle(e.target.value)} />
         </Form.Item>
+
         <Form.Item label="Note Category" layout="vertical">
           <CustomSelect
             categories={categories}
@@ -76,9 +79,15 @@ const NewNotes: React.FC = () => {
           />
         </Form.Item>
         <Form.Item label="Content" layout="vertical">
-          <TextArea rows={5} placeholder="maxLength is 6" maxLength={6} />
+          <TextArea
+            rows={5}
+            placeholder="maxLength is 6"
+            // maxLength={6}
+            onChange={(e) => setContent(e.target.value)}
+            // onChange={(e) => console.log("field", e.target.value)}
+            name="content"
+          />
         </Form.Item>
-
         <Form.Item label="Color Tag">
           {/* Color Picker */}
           <ColorPicker
