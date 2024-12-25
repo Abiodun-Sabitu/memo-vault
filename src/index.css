@@ -1,0 +1,104 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  --custom-purple: #a713f6;
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* background: url("/bg.svg") no-repeat center/contain; */
+}
+
+body {
+  margin: 20px 50px;
+  width: auto;
+  height: auto;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  /* color: var(--custom-purple); */
+  color: var(--custom-purple);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  height: 85vh;
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 0 20px;
+  /* background: url("/public/blank-note.jpg") no-repeat center; */
+  background: url("/cabinote.svg") no-repeat left/contain;
+}
+
+#header .menu_wrapper {
+  display: flex;
+  gap: 25px;
+}
+
+.menu_items {
+  display: flex;
+  gap: 25px;
+}
+.menu_items_icons {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.phone_menu {
+  visibility: hidden;
+}
+
+:where(.css-dev-only-do-not-override-1gyh646).ant-tooltip .ant-tooltip-inner {
+  background-color: var(--custom-purple);
+}
+:where(.css-dev-only-do-not-override-1gyh646).ant-tooltip {
+  --antd-arrow-background-color: var(--custom-purple);
+}
+
+:where(.css-dev-only-do-not-override-77tu7h).ant-btn > span:not(:only-child) {
+  display: block;
+  align-self: center;
+}
+
+.no-focus-outline:focus {
+  outline: none;
+  border: 0;
+  box-shadow: 0 0 0px #d699ff;
+}
+.no-focus-outline:hover {
+  outline: none;
+  border: 0;
+  box-shadow: 0 0 0px #d699ff;
+}
+
+.icon_color {
+  background-color: var(--custom-purple);
+}
+@media screen and (max-width: 649px) {
+  body {
+    margin: 20px 25px;
+  }
+
+  #header .menu_wrapper {
+    display: none;
+  }
+}
