@@ -10,14 +10,14 @@ import AppLayout from "./components/AppLayout";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <AppLayout>
-      <BrowserRouter>
+    <BrowserRouter>
+      <AppLayout>
         <Routes>
           <Route path="/" element={<App />}></Route>
           <Route path="all-notes" element={<AllNotes />}></Route>
           <Route path="create-note" element={<NewNotes />}></Route>
         </Routes>
-      </BrowserRouter>
-    </AppLayout>
+      </AppLayout>
+    </BrowserRouter>
   </StrictMode>
 );

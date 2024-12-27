@@ -2,6 +2,7 @@ import { CgMenuGridR } from "react-icons/cg";
 import { ConfigProvider, FloatButton } from "antd";
 import { MdMenuBook, MdNoteAdd } from "react-icons/md";
 import { RiMoonClearLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const FloatingMenu: React.FC<{
   isMenuOpen: boolean;
@@ -27,10 +28,12 @@ const FloatingMenu: React.FC<{
         icon={<CgMenuGridR />}
         open={isMenuOpen}
       >
-        <FloatButton
-          icon={<MdNoteAdd fill="#9d4edd" />}
-          tooltip={<div>Add Note</div>}
-        />
+        <Link to="/create-note">
+          <FloatButton
+            icon={<MdNoteAdd fill="#9d4edd" />}
+            tooltip={<div>Add Note</div>}
+          />
+        </Link>
         <FloatButton
           icon={<MdMenuBook fill="#9d4edd" />}
           tooltip={<div>All Notes</div>}

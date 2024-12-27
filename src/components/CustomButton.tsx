@@ -7,7 +7,7 @@ const CustomButton: React.FC<{
   label: React.ReactNode;
   color: string;
   htmlType: HtmlType;
-  onClick: () => void;
+  onClick?: () => void;
 }> = ({ label, color, onClick, htmlType }) => (
   <div
     style={{

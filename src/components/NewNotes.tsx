@@ -32,9 +32,9 @@ const NewNotes: React.FC = () => {
     }
   }, []);
 
-  const createNewNote = (values: any) => {
+  const createNewNote = () => {
     // Get the current notes from localStorage
-    const savedNotes = JSON.parse(localStorage.getItem("notes") || "[]");
+    const savedNotes = JSON.parse(localStorage.getItem("allNotes") || "[]");
 
     // Generate a new unique ID
     const newId = savedNotes.length
@@ -48,6 +48,12 @@ const NewNotes: React.FC = () => {
       category, // User-selected category
       color, // User-selected color
     };
+    console.log("Categories:", categories);
+    console.log("Selected Category:", category);
+    console.log("Selected Color:", color);
+    console.log("Title:", title);
+    console.log("Content:", content);
+    console.log("Content:", content);
 
     // Save the new note
     savedNotes.push(createdNote);
@@ -106,7 +112,6 @@ const NewNotes: React.FC = () => {
           }
           htmlType="submit"
           color="#9d4edd"
-          onClick={() => {}}
         />
       </Form>
     </>
