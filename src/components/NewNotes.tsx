@@ -3,7 +3,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import CustomSelect from "./CustomSelect";
 import CustomButton from "./CustomButton";
 import { IoIosSave } from "react-icons/io";
-
+import useNotes from "../hooks/useNotes";
+import { useNavigate } from "react-router-dom";
 const NewNotes: React.FC = () => {
   const { TextArea } = Input;
   const [categories, setCategories] = useState<string[]>([]); // Pre-saved items
@@ -11,7 +12,7 @@ const NewNotes: React.FC = () => {
   const [color, setColor] = useState<string>("#ffffff"); // Selected color
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-
+  const { addNote } = useNotes();
   useEffect(() => {
     const defaultCategories: string[] = [
       "Idea",
@@ -32,6 +33,8 @@ const NewNotes: React.FC = () => {
     }
   }, []);
 
+  const navigate = useNavigate();
+
   const createNewNote = () => {
     // Get the current notes from localStorage
     const savedNotes = JSON.parse(localStorage.getItem("allNotes") || "[]");
@@ -48,18 +51,14 @@ const NewNotes: React.FC = () => {
       category, // User-selected category
       color, // User-selected color
     };
-    console.log("Categories:", categories);
-    console.log("Selected Category:", category);
-    console.log("Selected Color:", color);
-    console.log("Title:", title);
-    console.log("Content:", content);
-    console.log("Content:", content);
 
     // Save the new note
-    savedNotes.push(createdNote);
-    localStorage.setItem("allNotes", JSON.stringify(savedNotes));
+    // savedNotes.push(createdNote);
+    // localStorage.setItem("allNotes", JSON.stringify(savedNotes));
 
-    console.log("Saved Note:", createdNote);
+    addNote(createdNote);
+    navigate("/all-notes");
+    // console.log("Saved Note:", createdNote);
   };
 
   // Memoize the callback function to avoid re-creating it on every render
@@ -87,14 +86,12 @@ const NewNotes: React.FC = () => {
         <Form.Item label="Content" layout="vertical">
           <TextArea
             rows={5}
-            placeholder="maxLength is 6"
-            // maxLength={6}
+            placeholder="Type your note here..."
             onChange={(e) => setContent(e.target.value)}
-            // onChange={(e) => console.log("field", e.target.value)}
             name="content"
           />
         </Form.Item>
-        <Form.Item label="Color Tag">
+        <Form.Item label="Label Color">
           {/* Color Picker */}
           <ColorPicker
             defaultValue={color}

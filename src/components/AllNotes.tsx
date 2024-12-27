@@ -1,25 +1,23 @@
 import { CustomCard } from "./CustomCard";
 
-const AllNotes = () => {
-  const allNotes: Array<any> = JSON.parse(
-    localStorage.getItem("allNotes") || "[]"
-  );
-
+const AllNotes: React.FC<{ notes: any[]; onDelete: (id: number) => void }> = ({
+  notes,
+  onDelete,
+}) => {
   return (
-    <>
-      {allNotes?.map((note) => (
-        <>
-          {/* <div key={note.id}>{note.title}</div> */}
-          <CustomCard
-            key={note.id}
-            title={note.title}
-            content={note.content}
-            labelColor={note.color}
-            tag={note.category}
-          />
-        </>
+    <div>
+      {notes.map((note) => (
+        <CustomCard
+          key={note.id}
+          id={note.id}
+          title={note.title}
+          content={note.content}
+          labelColor={note.color}
+          tag={note.category}
+          onDelete={() => onDelete(note.id)}
+        />
       ))}
-    </>
+    </div>
   );
 };
 

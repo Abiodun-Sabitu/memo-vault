@@ -24,9 +24,11 @@ const FloatingMenu: React.FC<{
         style={{
           insetInlineEnd: 94,
           right: 40,
+
+          zIndex: 1200,
         }}
         icon={<CgMenuGridR />}
-        open={isMenuOpen}
+        // open={isMenuOpen}
       >
         <Link to="/create-note">
           <FloatButton

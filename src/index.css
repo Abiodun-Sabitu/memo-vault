@@ -95,20 +95,83 @@ header {
 }
 
 .card {
-  background: #ffffff; /* White background for the card */
-  border-radius: 12px; /* Smooth rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
-    /* Soft, wide shadow */ 0 1px 3px rgba(0, 0, 0, 0.08); /* Slightly sharper shadow for depth */
-  padding: 20px; /* Space inside the card */
-  /* min-width: 80vw; */
-  width: 90%;
-  margin: 20px auto; /* Center the card with auto margins */
-  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  padding: 10px 20px;
+  border-top: #d699ff solid 2px;
+  width: 50%;
+  margin: 20px auto;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: rgb(89, 88, 88);
 }
 
 .card:hover {
-  transform: translateY(-4px); /* Slight lift effect */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12), 0 4px 6px rgba(0, 0, 0, 0.1); /* Enhanced shadow on hover */
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12), 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tag_category {
+  border: solid, 2px;
+  border-radius: 100px;
+  color: white;
+  padding: 2px 12px;
+  font-size: x-small;
+  display: inline-block;
+}
+
+figcaption {
+  font-size: medium;
+  font-weight: 500;
+}
+
+article {
+  font-weight: 400;
+  font-size: small;
+}
+@keyframes blurIn {
+  from {
+    opacity: 0;
+    filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0.5px);
+  }
+}
+
+@keyframes blurOut {
+  from {
+    opacity: 1;
+    filter: blur(0.5px);
+  }
+  to {
+    opacity: 0;
+    filter: blur(0px);
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(229, 187, 245, 0.3);
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  backdrop-filter: blur(1.2px);
+}
+
+.overlay.show {
+  pointer-events: all;
+  animation: blurIn 1s ease forwards;
+}
+
+.overlay.hide {
+  pointer-events: none;
+  animation: blurOut 1s ease forwards;
 }
 
 @media screen and (max-width: 649px) {

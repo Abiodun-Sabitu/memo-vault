@@ -7,6 +7,12 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <>
       <Header />
       <FloatingMenu isMenuOpen={isMenuOpen} setMenu={setMenu} />
+      <div
+        onClick={() => {
+          setMenu(true);
+        }}
+        className={!isMenuOpen ? "overlay show" : "overlay hide"}
+      ></div>
       {children}
     </>
   );
