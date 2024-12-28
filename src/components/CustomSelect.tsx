@@ -78,12 +78,19 @@ const CustomSelect: React.FC<AppProps> = ({
 
   return (
     <Select
+      size="large"
       placeholder="Select a category"
       dropdownRender={(menu) => (
         <>
           {menu}
           <Divider style={{ margin: "8px 0" }} />
-          <Space style={{ padding: "0 8px 4px" }}>
+          <Space
+            style={{
+              padding: "0 8px 4px",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
             <Input
               placeholder="Add a category"
               ref={inputRef}
@@ -91,8 +98,12 @@ const CustomSelect: React.FC<AppProps> = ({
               onChange={onAdditionOfCustomCategory}
               onKeyDown={(e) => e.stopPropagation()}
             />
-            <Button type="text" icon={<PlusOutlined />} onClick={addItem}>
-              Add Custom Category
+            <Button
+              type="text"
+              onClick={addItem}
+              style={{ backgroundColor: "#d699ff", color: "white" }}
+            >
+              Add <PlusOutlined />
             </Button>
           </Space>
         </>

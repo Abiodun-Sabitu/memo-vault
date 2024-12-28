@@ -36,10 +36,12 @@ const FloatingMenu: React.FC<{
             tooltip={<div>Add Note</div>}
           />
         </Link>
-        <FloatButton
-          icon={<MdMenuBook fill="#9d4edd" />}
-          tooltip={<div>All Notes</div>}
-        />
+        <Link to="/all-notes">
+          <FloatButton
+            icon={<MdMenuBook fill="#9d4edd" />}
+            tooltip={<div>All Notes</div>}
+          />
+        </Link>
         <FloatButton
           icon={<RiMoonClearLine fill="#9d4edd" />}
           tooltip={<div>Theme</div>}

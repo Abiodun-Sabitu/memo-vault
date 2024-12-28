@@ -8,7 +8,7 @@ export const PlaceHolder = () => {
   const navigateToCreateNote = () => {
     navigate("/create-note");
   };
-  console.log("Rendering PlaceHolder"); // Debugging lo
+  console.log("Rendering PlaceHolder");
   return (
     <>
       <div className="placeholder">

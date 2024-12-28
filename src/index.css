@@ -120,6 +120,54 @@ header {
   display: inline-block;
 }
 
+:where(.css-dev-only-do-not-override-77tu7h).ant-input-outlined {
+  border-color: #d699ff;
+}
+
+:where(.css-dev-only-do-not-override-77tu7h).ant-input-outlined:focus {
+  border-color: #a713f6;
+}
+
+:where(.css-dev-only-do-not-override-77tu7h).ant-select-outlined:not(
+    .ant-select-customize-input
+  )
+  .ant-select-selector {
+  border: 1px solid #d699ff;
+  background: #ffffff;
+}
+
+.ant-select-focused:where(
+    .css-dev-only-do-not-override-77tu7h
+  ).ant-select-outlined:not(.ant-select-disabled):not(
+    .ant-select-customize-input
+  ):not(.ant-pagination-size-changer)
+  .ant-select-selector {
+  border-color: #a713f6;
+}
+
+.ant-select-item-option:hover {
+  background-color: #d699ff3c !important; /* Your desired hover color */
+  /* Change the text color if needed */
+}
+
+.ant-select-item-option-selected {
+  background-color: #d699ff3c !important;
+  /* color: white !important; */
+}
+
+.ant-color-picker-trigger {
+  border-color: #d699ff;
+}
+
+.ant-color-picker-trigger.ant-color-picker-trigger-active {
+  border-color: #a713f6;
+}
+.ant-form-item-label > label {
+  font-size: medium;
+  font-weight: 500;
+  color: rgb(68, 67, 67) !important;
+}
+
 figcaption {
   font-size: medium;
   font-weight: 500;

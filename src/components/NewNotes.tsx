@@ -1,4 +1,4 @@
-import { ColorPicker, Form, Input } from "antd";
+import { ColorPicker, Flex, Form, Input } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
 import CustomSelect from "./CustomSelect";
 import CustomButton from "./CustomButton";
@@ -52,10 +52,6 @@ const NewNotes: React.FC = () => {
       color, // User-selected color
     };
 
-    // Save the new note
-    // savedNotes.push(createdNote);
-    // localStorage.setItem("allNotes", JSON.stringify(savedNotes));
-
     addNote(createdNote);
     navigate("/all-notes");
     // console.log("Saved Note:", createdNote);
@@ -68,49 +64,81 @@ const NewNotes: React.FC = () => {
 
   return (
     <>
-      <Form name="newNoteForm" layout="vertical" onFinish={createNewNote}>
-        <h2 style={{ textAlign: "center" }}>Create New Note</h2>
-        <Form.Item label="Title" layout="vertical">
-          <Input name="title" onChange={(e) => setTitle(e.target.value)} />
-        </Form.Item>
+      <Flex
+        justify="center"
+        style={{ padding: 20, marginTop: 20 }}
+        vertical
+        align="center"
+      >
+        <Form
+          name="newNoteForm"
+          layout="vertical"
+          onFinish={createNewNote}
+          style={{
+            maxWidth: "400px",
+            width: "100%",
+            backgroundColor: "white",
+            padding: 20,
+            borderRadius: 8,
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          <h3
+            style={{
+              textAlign: "center",
+              color: "#9d4edd",
+              fontWeight: "bold",
+            }}
+          >
+            Create New Note
+          </h3>
+          <Form.Item label="Title" layout="vertical">
+            <Input
+              name="title"
+              onChange={(e) => setTitle(e.target.value)}
+              size="large"
+            />
+          </Form.Item>
 
-        <Form.Item label="Note Category" layout="vertical">
-          <CustomSelect
-            categories={categories}
-            onCategoriesChange={onCategoriesChange}
-            onCategorySelect={(selectedCategory: string) =>
-              setCategory(selectedCategory)
+          <Form.Item label="Note Category" layout="vertical">
+            <CustomSelect
+              categories={categories}
+              onCategoriesChange={onCategoriesChange}
+              onCategorySelect={(selectedCategory: string) =>
+                setCategory(selectedCategory)
+              }
+            />
+          </Form.Item>
+          <Form.Item label="Content" layout="vertical">
+            <TextArea
+              rows={5}
+              placeholder="Type your note here..."
+              onChange={(e) => setContent(e.target.value)}
+              name="content"
+            />
+          </Form.Item>
+          <Form.Item label="Color Label">
+            {/* Color Picker */}
+            <ColorPicker
+              defaultValue={color}
+              showText
+              onChange={(colorResult) => setColor(colorResult.toHexString())} // Update color
+            />
+          </Form.Item>
+          <CustomButton
+            label={
+              <>
+                <div className="menu_items_icons">
+                  Save &nbsp;{" "}
+                  <IoIosSave fill="white" style={{ marginTop: 2 }} />
+                </div>
+              </>
             }
+            htmlType="submit"
+            color="#9d4edd"
           />
-        </Form.Item>
-        <Form.Item label="Content" layout="vertical">
-          <TextArea
-            rows={5}
-            placeholder="Type your note here..."
-            onChange={(e) => setContent(e.target.value)}
-            name="content"
-          />
-        </Form.Item>
-        <Form.Item label="Label Color">
-          {/* Color Picker */}
-          <ColorPicker
-            defaultValue={color}
-            showText
-            onChange={(colorResult) => setColor(colorResult.toHexString())} // Update color
-          />
-        </Form.Item>
-        <CustomButton
-          label={
-            <>
-              <div className="menu_items_icons">
-                Save &nbsp; <IoIosSave fill="white" style={{ marginTop: 2 }} />
-              </div>
-            </>
-          }
-          htmlType="submit"
-          color="#9d4edd"
-        />
-      </Form>
+        </Form>
+      </Flex>
     </>
   );
 };
