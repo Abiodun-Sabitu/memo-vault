@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { PlusOutlined } from "@ant-design/icons";
 import { Button, Divider, Input, Select, Space } from "antd";
 import type { InputRef } from "antd";
 
@@ -7,17 +6,20 @@ interface AppProps {
   categories: string[];
   onCategoriesChange: (updatedCategories: string[]) => void;
   onCategorySelect: (selectedCategory: string) => void;
+  value?: string | null;
 }
 
 const CustomSelect: React.FC<AppProps> = ({
   categories,
   onCategoriesChange,
   onCategorySelect,
+  value,
 }) => {
   const [localCategories, setLocalCategories] = useState<string[]>(categories);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [customCategory, setCustomCategory] = useState("");
+  const [customCategory, setCustomCategory] = useState<any>("");
   const inputRef = useRef<InputRef>(null);
+  // console.log("value + ", value);
 
   useEffect(() => {
     const storedCategories = localStorage.getItem("dropdownItems");
@@ -27,22 +29,6 @@ const CustomSelect: React.FC<AppProps> = ({
       onCategoriesChange(parsedCategories);
     }
   }, [onCategoriesChange]);
-
-  // Optimized useEffect to avoid redundant updates
-  // useEffect(() => {
-  //   const storedCategories = localStorage.getItem("dropdownItems");
-  //   if (storedCategories) {
-  //     const parsedCategories = JSON.parse(storedCategories);
-
-  //     // Update only if the stored categories differ from the current state
-  //     if (
-  //       JSON.stringify(parsedCategories) !== JSON.stringify(localCategories)
-  //     ) {
-  //       setLocalCategories(parsedCategories);
-  //       onCategoriesChange(parsedCategories);
-  //     }
-  //   }
-  // }, [localCategories, onCategoriesChange]);
 
   const onAdditionOfCustomCategory = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -78,6 +64,8 @@ const CustomSelect: React.FC<AppProps> = ({
 
   return (
     <Select
+      className="user_entries"
+      value={value}
       size="large"
       placeholder="Select a category"
       dropdownRender={(menu) => (
@@ -101,9 +89,14 @@ const CustomSelect: React.FC<AppProps> = ({
             <Button
               type="text"
               onClick={addItem}
-              style={{ backgroundColor: "#d699ff", color: "white" }}
+              disabled={customCategory.length < 1}
+              style={
+                customCategory.length < 1
+                  ? { color: "gray", border: " #d699ff 1px solid" }
+                  : { backgroundColor: "#d699ff", color: "white" }
+              }
             >
-              Add <PlusOutlined />
+              Add Category
             </Button>
           </Space>
         </>

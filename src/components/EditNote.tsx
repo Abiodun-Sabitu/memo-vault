@@ -4,15 +4,31 @@ import CustomSelect from "./CustomSelect";
 import CustomButton from "./CustomButton";
 import { IoIosSave } from "react-icons/io";
 import useNotes from "../hooks/useNotes";
-import { useNavigate } from "react-router-dom";
-const NewNotes: React.FC = () => {
+const EditNote: React.FC<{
+  selectedNoteToEdit: any;
+  setIsModalOpen: (value: boolean) => void;
+  onEdit: (id: number, editedNote: any) => void;
+}> = ({ selectedNoteToEdit, setIsModalOpen, onEdit }) => {
   const { TextArea } = Input;
   const [categories, setCategories] = useState<string[]>([]); // Pre-saved items
   const [category, setCategory] = useState<string | null>(null); // Selected category
   const [color, setColor] = useState<string>("#ffffff"); // Selected color
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const { addNote } = useNotes();
+
+  // const { updateEditedNote } = useNotes();
+
+  // Update state when `selectedNoteToEdit` changes
+  useEffect(() => {
+    if (selectedNoteToEdit) {
+      setTitle(selectedNoteToEdit.title || "");
+      setContent(selectedNoteToEdit.content || "");
+      setCategory(selectedNoteToEdit.category || null);
+      setColor(selectedNoteToEdit.color || "#ffffff");
+    }
+  }, [selectedNoteToEdit]); // Runs whenever `selectedNoteToEdit` changes
+
+  console.log("id selected is ", selectedNoteToEdit?.id);
   useEffect(() => {
     const defaultCategories: string[] = [
       "Idea",
@@ -33,28 +49,23 @@ const NewNotes: React.FC = () => {
     }
   }, []);
 
-  const navigate = useNavigate();
-
-  const createNewNote = () => {
+  const handleEditNote = () => {
     // Get the current notes from localStorage
-    const savedNotes = JSON.parse(localStorage.getItem("allNotes") || "[]");
 
-    // Generate a new unique ID
-    const newId = savedNotes.length
-      ? savedNotes[savedNotes.length - 1].id + 1
-      : 1;
+    // pick selected note ID
+    const editedNoteId = selectedNoteToEdit?.id;
 
-    const createdNote = {
-      id: newId,
+    const editedNote = {
+      id: editedNoteId,
       title,
       content,
       category, // User-selected category
       color, // User-selected color
     };
 
-    addNote(createdNote);
-    navigate("/all-notes");
-    // console.log("Saved Note:", createdNote);
+    onEdit(editedNoteId, editedNote);
+    setIsModalOpen(false);
+    // navigate("/all-notes");
   };
 
   // Memoize the callback function to avoid re-creating it on every render
@@ -66,21 +77,20 @@ const NewNotes: React.FC = () => {
     <>
       <Flex
         justify="center"
-        style={{ padding: 20, marginTop: 20 }}
+        style={{ padding: 10, marginTop: 20 }}
         vertical
         align="center"
       >
         <Form
           name="newNoteForm"
           layout="vertical"
-          onFinish={createNewNote}
+          onFinish={handleEditNote}
           style={{
             maxWidth: "400px",
             width: "100%",
             backgroundColor: "white",
             padding: 20,
             borderRadius: 8,
-            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
           }}
         >
           <h3
@@ -90,13 +100,14 @@ const NewNotes: React.FC = () => {
               fontWeight: "bold",
             }}
           >
-            Create New Note
+            Edit Note
           </h3>
           <Form.Item label="Title" layout="vertical">
             <Input
               name="title"
               onChange={(e) => setTitle(e.target.value)}
               size="large"
+              value={title}
             />
           </Form.Item>
 
@@ -107,6 +118,7 @@ const NewNotes: React.FC = () => {
               onCategorySelect={(selectedCategory: string) =>
                 setCategory(selectedCategory)
               }
+              value={category}
             />
           </Form.Item>
           <Form.Item label="Content" layout="vertical">
@@ -115,12 +127,14 @@ const NewNotes: React.FC = () => {
               placeholder="Type your note here..."
               onChange={(e) => setContent(e.target.value)}
               name="content"
+              value={content}
               className="user_entries"
             />
           </Form.Item>
           <Form.Item label="Color Label">
             {/* Color Picker */}
             <ColorPicker
+              value={color}
               defaultValue={color}
               showText
               onChange={(colorResult) => setColor(colorResult.toHexString())} // Update color
@@ -143,5 +157,4 @@ const NewNotes: React.FC = () => {
     </>
   );
 };
-
-export default NewNotes;
+export default EditNote;
