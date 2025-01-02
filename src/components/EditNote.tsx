@@ -28,7 +28,7 @@ const EditNote: React.FC<{
     }
   }, [selectedNoteToEdit]); // Runs whenever `selectedNoteToEdit` changes
 
-  console.log("id selected is ", selectedNoteToEdit?.id);
+  // console.log("id selected is ", selectedNoteToEdit?.id);
   useEffect(() => {
     const defaultCategories: string[] = [
       "Idea",

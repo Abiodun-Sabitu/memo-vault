@@ -17,6 +17,7 @@ const CustomSelect: React.FC<AppProps> = ({
 }) => {
   const [localCategories, setLocalCategories] = useState<string[]>(categories);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
   const [customCategory, setCustomCategory] = useState<any>("");
   const inputRef = useRef<InputRef>(null);
   // console.log("value + ", value);
@@ -60,6 +61,7 @@ const CustomSelect: React.FC<AppProps> = ({
   const handleSelectChange = (value: string) => {
     setSelectedCategory(value);
     onCategorySelect(value);
+    console.log(selectedCategory);
   };
 
   return (
