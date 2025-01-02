@@ -14,7 +14,7 @@
 
 body {
   margin: 20px 50px;
-  width: auto;
+  width: auto !important;
   height: auto;
 }
 
@@ -108,7 +108,7 @@ header {
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 10px 20px;
+  padding: 10px 0px;
   border-top: #d699ff solid 2px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   color: rgba(68, 67, 67, 0.77);
@@ -209,6 +209,7 @@ input {
 figcaption {
   font-size: medium;
   font-weight: 500;
+  cursor: "pointer";
 }
 
 article {
@@ -276,5 +277,10 @@ article {
   .wrapper,
   header {
     padding: 10px;
+  }
+
+  .ant-modal .ant-modal-content {
+    padding: 20px 10px;
+    margin: 20px;
   }
 }

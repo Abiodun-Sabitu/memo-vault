@@ -44,6 +44,12 @@ const useNotes = () => {
     localStorage.setItem("allNotes", JSON.stringify(selectedNote)); // Update localStorage
   };
 
+  const onReorder = (reorderedNotes: any[]) => {
+    // Handle reordering logic
+    setNotes(reorderedNotes); // Update state with reordered notes
+    localStorage.setItem("allNotes", JSON.stringify(reorderedNotes)); // Sync reordered notes to localStorage
+  };
+
   return {
     notes,
     addNote,
@@ -52,6 +58,7 @@ const useNotes = () => {
     noteToEdit,
     setNoteToEdit,
     updateEditedNote,
+    onReorder,
   };
 };
 

@@ -89,7 +89,7 @@ const EditNote: React.FC<{
             maxWidth: "400px",
             width: "100%",
             backgroundColor: "white",
-            padding: 20,
+            padding: 0,
             borderRadius: 8,
           }}
         >
