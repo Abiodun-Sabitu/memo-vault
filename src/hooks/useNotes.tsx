@@ -13,7 +13,7 @@ const useNotes = () => {
     if (!notes) {
       return;
     }
-    const updatedNotes = [...notes, note];
+    const updatedNotes = [note, ...notes];
     setNotes(updatedNotes); // Update state
     localStorage.setItem("allNotes", JSON.stringify(updatedNotes)); // Update localStorage
   };
@@ -32,6 +32,7 @@ const useNotes = () => {
     const selectedNote = notes.find((note) => note.id === id);
     setNoteToEdit(selectedNote || null);
     localStorage.setItem("noteToEdit", JSON.stringify(selectedNote));
+
     // console.log("getNoteToEdit func", noteToEdit); //
   };
 
@@ -40,7 +41,6 @@ const useNotes = () => {
       note.id === id ? { ...note, ...editedNote } : note
     );
     setNotes(selectedNote);
-    console.log(selectedNote);
     localStorage.setItem("allNotes", JSON.stringify(selectedNote)); // Update localStorage
   };
 

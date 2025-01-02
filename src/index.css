@@ -31,6 +31,7 @@ body {
 header {
   display: flex;
   justify-content: space-between;
+  padding: 0px 40px;
 }
 
 .placeholder {
@@ -272,13 +273,8 @@ article {
     width: 100%;
   }
 
-  .wrapper {
-    display: grid;
-    grid-template-columns: repeat(
-      auto-fill,
-      minmax(300px, 1fr)
-    ); /* Ensures a minimum width of 300px */
-    gap: 30px; /* Spacing between cards */
+  .wrapper,
+  header {
     padding: 10px;
   }
 }

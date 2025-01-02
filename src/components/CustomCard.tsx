@@ -10,10 +10,18 @@ export const CustomCard: React.FC<{
   tag: string;
   id: number;
   onDelete: (id: number) => void;
+  getNoteToEdit: (id: number) => void;
   setIsModalOpen: (value: boolean) => void;
-}> = ({ title, content, labelColor, tag, id, onDelete, setIsModalOpen }) => {
-  const { getNoteToEdit } = useNotes();
-
+}> = ({
+  title,
+  content,
+  labelColor,
+  tag,
+  id,
+  onDelete,
+  getNoteToEdit,
+  setIsModalOpen,
+}) => {
   const onEditNote = () => {
     setIsModalOpen(true);
     getNoteToEdit(id);

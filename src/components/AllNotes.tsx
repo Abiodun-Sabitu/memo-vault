@@ -6,9 +6,10 @@ const AllNotes: React.FC<{
   notes: any[];
   onDelete: (id: number) => void;
   onEdit: (id: number, editedNote: any) => void;
-}> = ({ notes, onDelete, onEdit }) => {
+  getNoteToEdit: (id: number) => void;
+}> = ({ notes, onDelete, onEdit, getNoteToEdit }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  console.log("Rendering AllNotes with notes:", notes);
+  // console.log("Rendering AllNotes with notes:", notes);
   return (
     <div>
       <ModalBox
@@ -16,19 +17,7 @@ const AllNotes: React.FC<{
         setIsModalOpen={setIsModalOpen}
         onEdit={onEdit}
       />
-      <div
-        // style={{
-        //   display: "flex",
-        //   flexDirection: "row",
-        //   flexWrap: "wrap",
-        //   flexBasis: 1,
-        //   // justifyContent: "space-between",
-        //   justifyItems: "center",
-        //   padding: 40,
-        //   gap: 30,
-        // }}
-        className="wrapper"
-      >
+      <div className="wrapper">
         {notes.map((note) => (
           <CustomCard
             key={note.id}
@@ -38,6 +27,7 @@ const AllNotes: React.FC<{
             labelColor={note.color}
             tag={note.category}
             onDelete={() => onDelete(note.id)}
+            getNoteToEdit={getNoteToEdit}
             setIsModalOpen={setIsModalOpen}
           />
         ))}

@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import CustomSelect from "./CustomSelect";
 import CustomButton from "./CustomButton";
 import { IoIosSave } from "react-icons/io";
-import useNotes from "../hooks/useNotes";
+
 const EditNote: React.FC<{
   selectedNoteToEdit: any;
   setIsModalOpen: (value: boolean) => void;
