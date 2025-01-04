@@ -7,8 +7,6 @@ import NewNotes from "./components/NewNotes";
 import AppLayout from "./components/AppLayout.tsx";
 
 const Main = () => {
-  console.log("bbbb", JSON.parse(localStorage.getItem("allNotes") || "null"));
-
   return (
     <BrowserRouter>
       <AppLayout>
