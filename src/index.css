@@ -18,6 +18,20 @@ body {
   height: auto;
 }
 
+.dark_bg {
+  background-color: #1b1a1a;
+}
+
+.dark_cards {
+  background: #292828;
+  color: #ffffff;
+}
+
+.dark_form {
+  background: #292828;
+  color: #ffffff;
+}
+
 .logo {
   font-weight: bold;
   font-size: 22px;
@@ -105,7 +119,7 @@ header {
   padding: 40px;
 }
 .card {
-  background: #ffffff;
+  background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
   padding: 10px 0px;

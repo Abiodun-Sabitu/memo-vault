@@ -1,15 +1,30 @@
 import { useState } from "react";
 import { CustomCard } from "./CustomCard";
 import ModalBox from "./Modal";
+import Filter from "./Filter";
 
 // export default AllNotes;
 const AllNotes: React.FC<{
   notes: any[];
+  copiedNotes: any[];
   onDelete: (id: number) => void;
   onEdit: (id: number, editedNote: any) => void; // Updated type for `onEdit`
   getNoteToEdit: (id: number) => void;
   onReorder: (reorderedNotes: any) => void;
-}> = ({ notes, onDelete, onEdit, getNoteToEdit, onReorder }) => {
+  onFilter: () => void;
+  noteCategories: string[];
+  setNotes: React.Dispatch<React.SetStateAction<any[]>>;
+}> = ({
+  notes,
+  onDelete,
+  onEdit,
+  getNoteToEdit,
+  onReorder,
+  onFilter,
+  setNotes,
+  noteCategories,
+  copiedNotes,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [draggedNoteId, setDraggedNoteId] = useState<number | null>(null);
 
@@ -47,6 +62,16 @@ const AllNotes: React.FC<{
 
   return (
     <div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <span onClick={onFilter}>
+          <Filter
+            noteCategories={noteCategories}
+            setNotes={setNotes}
+            notes={notes}
+            copiedNotes={copiedNotes}
+          />
+        </span>
+      </div>
       <ModalBox
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
@@ -60,7 +85,6 @@ const AllNotes: React.FC<{
             onDragOver={handleDragOver} // Allow dragging over
             onDrop={() => handleDrop(note.id)} // Handle dropping
             style={{
-              cursor: "grab",
               opacity: draggedNoteId === note.id ? 0.5 : 1, // Visual feedback for dragging
               border: draggedNoteId === note.id ? "2px dashed #000" : "none",
             }}

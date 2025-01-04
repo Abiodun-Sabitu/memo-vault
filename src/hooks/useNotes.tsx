@@ -1,57 +1,89 @@
 import { useEffect, useState } from "react";
 
 const useNotes = () => {
-  const [notes, setNotes] = useState<any[]>([]);
+  const [notes, setNotes] = useState<any[]>([]); // Current filtered notes
+  const [copiedNotes, setCopiedNotes] = useState<any[]>([]); // Backup of original notes
   const [noteToEdit, setNoteToEdit] = useState(null);
+  const [noteCategories, setNoteCategories] = useState<string[]>([]);
 
+  // Initial load of notes and categories
   useEffect(() => {
     const storedNotes = JSON.parse(localStorage.getItem("allNotes") || "[]");
     setNotes(storedNotes);
+    setCopiedNotes(storedNotes); // Set the initial backup
+
+    const categoryList = JSON.parse(
+      localStorage.getItem("dropdownItems") || "[]"
+    );
+    setNoteCategories(categoryList);
   }, []);
 
+  // Add a new note
   const addNote = (note: any) => {
-    if (!notes) {
-      return;
-    }
-    const updatedNotes = [note, ...notes];
-    setNotes(updatedNotes); // Update state
-    localStorage.setItem("allNotes", JSON.stringify(updatedNotes)); // Update localStorage
+    const updatedNotes = [note, ...copiedNotes];
+    setNotes(updatedNotes); // Update current notes
+    setCopiedNotes(updatedNotes); // Update backup
+    localStorage.setItem("allNotes", JSON.stringify(updatedNotes)); // Sync with localStorage
   };
 
   // Delete a note by ID
   const deleteNote = (id: number) => {
-    // console.log("Before delete:", notes);
-    const updatedNotes = notes.filter((note) => note.id !== id);
-    // console.log("After delete:", updatedNotes);
-    setNotes(updatedNotes); // Update state
+    const updatedNotes = copiedNotes.filter((note) => note.id !== id);
+    setNotes(updatedNotes); // Update current notes
+    setCopiedNotes(updatedNotes); // Update backup
     localStorage.setItem("allNotes", JSON.stringify(updatedNotes)); // Sync with localStorage
   };
 
-  // Get note to edit by ID
+  // Get a note to edit by ID
   const getNoteToEdit = (id: number) => {
-    const selectedNote = notes.find((note) => note.id === id);
+    const selectedNote = copiedNotes.find((note) => note.id === id);
     setNoteToEdit(selectedNote || null);
     localStorage.setItem("noteToEdit", JSON.stringify(selectedNote));
-
-    // console.log("getNoteToEdit func", noteToEdit); //
   };
 
+  // Update an edited note
   const updateEditedNote = (id: number, editedNote: any) => {
-    const selectedNote = notes.map((note) =>
+    const updatedNotes = copiedNotes.map((note) =>
       note.id === id ? { ...note, ...editedNote } : note
     );
-    setNotes(selectedNote);
-    localStorage.setItem("allNotes", JSON.stringify(selectedNote)); // Update localStorage
+    setNotes(updatedNotes); // Update current notes
+    setCopiedNotes(updatedNotes); // Update backup
+    localStorage.setItem("allNotes", JSON.stringify(updatedNotes)); // Sync with localStorage
   };
 
+  // Reorder notes
   const onReorder = (reorderedNotes: any[]) => {
-    // Handle reordering logic
-    setNotes(reorderedNotes); // Update state with reordered notes
-    localStorage.setItem("allNotes", JSON.stringify(reorderedNotes)); // Sync reordered notes to localStorage
+    setNotes(reorderedNotes); // Update current notes
+    setCopiedNotes(reorderedNotes); // Update backup
+    localStorage.setItem("allNotes", JSON.stringify(reorderedNotes)); // Sync with localStorage
+  };
+
+  // // Filter notes by category
+  // const filterByCategory = (category: string) => {
+  //   const filteredNotes = copiedNotes.filter(
+  //     (note) => note.category === category
+  //   );
+  //   setNotes(filteredNotes); // Update current notes to filtered list
+  //   localStorage.setItem("allNotes", JSON.stringify(filteredNotes)); // Sync filtered notes to localStorage
+  // };
+
+  // // Reset notes to their original state
+  // const resetFilter = () => {
+  //   setNotes(copiedNotes); // Restore original notes
+  //   localStorage.setItem("allNotes", JSON.stringify(copiedNotes)); // Sync original notes to localStorage
+  // };
+
+  // Refresh categories
+  const onFilter = () => {
+    const categoryList = JSON.parse(
+      localStorage.getItem("dropdownItems") || "[]"
+    );
+    setNoteCategories(categoryList);
   };
 
   return {
     notes,
+    copiedNotes, // Expose the backup notes
     addNote,
     deleteNote,
     getNoteToEdit,
@@ -59,6 +91,9 @@ const useNotes = () => {
     setNoteToEdit,
     updateEditedNote,
     onReorder,
+    noteCategories,
+    setNotes,
+    onFilter,
   };
 };
 

@@ -2,10 +2,10 @@ import FloatingMenu from "./FloatingMenu";
 import Header from "./Header";
 import { useState } from "react";
 
-const AppLayout: React.FC<{ children: React.ReactNode; notes: any[] }> = ({
-  children,
-  notes,
-}) => {
+const AppLayout: React.FC<{
+  children: React.ReactNode;
+  notes: any[];
+}> = ({ children, notes }) => {
   const [isMenuOpen, setMenu] = useState<boolean>(true);
 
   return (

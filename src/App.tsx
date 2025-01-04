@@ -5,8 +5,17 @@ import { Outlet } from "react-router-dom";
 import useNotes from "./hooks/useNotes";
 
 function App() {
-  const { notes, deleteNote, updateEditedNote, getNoteToEdit, onReorder } =
-    useNotes();
+  const {
+    notes,
+    deleteNote,
+    updateEditedNote,
+    getNoteToEdit,
+    onReorder,
+    onFilter,
+    setNotes,
+    noteCategories,
+    copiedNotes,
+  } = useNotes();
   // console.log("Rendering notes from App:", notes);
 
   return (
@@ -18,6 +27,10 @@ function App() {
           onEdit={updateEditedNote}
           getNoteToEdit={getNoteToEdit}
           onReorder={onReorder}
+          onFilter={onFilter}
+          setNotes={setNotes}
+          noteCategories={noteCategories}
+          copiedNotes={copiedNotes}
         />
       ) : (
         <PlaceHolder />
