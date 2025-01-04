@@ -58,21 +58,6 @@ const useNotes = () => {
     localStorage.setItem("allNotes", JSON.stringify(reorderedNotes)); // Sync with localStorage
   };
 
-  // // Filter notes by category
-  // const filterByCategory = (category: string) => {
-  //   const filteredNotes = copiedNotes.filter(
-  //     (note) => note.category === category
-  //   );
-  //   setNotes(filteredNotes); // Update current notes to filtered list
-  //   localStorage.setItem("allNotes", JSON.stringify(filteredNotes)); // Sync filtered notes to localStorage
-  // };
-
-  // // Reset notes to their original state
-  // const resetFilter = () => {
-  //   setNotes(copiedNotes); // Restore original notes
-  //   localStorage.setItem("allNotes", JSON.stringify(copiedNotes)); // Sync original notes to localStorage
-  // };
-
   // Refresh categories
   const onFilter = () => {
     const categoryList = JSON.parse(

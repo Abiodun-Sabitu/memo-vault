@@ -220,6 +220,31 @@ input {
   background-color: rgba(229, 187, 245, 0.3);
 }
 
+.filter-dropdown-trigger {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-decoration: none;
+  column-gap: 8px;
+  color: #4a4a4a;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  transition: background-color 0.3s ease;
+}
+
+.filter-dropdown-trigger:hover {
+  background-color: #e6e6e6;
+}
+
+.filter-icon {
+  margin-top: 2px;
+  font-size: 18px;
+  color: #4a4a4a;
+}
+
 figcaption {
   font-size: medium;
   font-weight: 500;

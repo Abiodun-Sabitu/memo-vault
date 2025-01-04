@@ -4,13 +4,12 @@ import { useState } from "react";
 
 const AppLayout: React.FC<{
   children: React.ReactNode;
-  notes: any[];
-}> = ({ children, notes }) => {
+}> = ({ children }) => {
   const [isMenuOpen, setMenu] = useState<boolean>(true);
 
   return (
     <>
-      <Header notes={notes} />
+      <Header />
       <FloatingMenu isMenuOpen={isMenuOpen} setMenu={setMenu} />
       <div
         onClick={() => {

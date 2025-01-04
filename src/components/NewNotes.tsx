@@ -37,15 +37,15 @@ const NewNotes: React.FC = () => {
 
   const createNewNote = () => {
     // Get the current notes from localStorage
-    const savedNotes = JSON.parse(localStorage.getItem("allNotes") || "[]");
+    // const savedNotes = JSON.parse(localStorage.getItem("allNotes") || "[]");
 
-    // Generate a new unique ID
-    const newId = savedNotes.length
-      ? savedNotes[savedNotes.length - 1].id + 1
-      : 1;
+    // // Generate a new unique ID
+    // const newId = savedNotes.length
+    //   ? savedNotes[savedNotes.length - 1].id + 1
+    //   : 1;
 
     const createdNote = {
-      id: newId,
+      id: Date.now(),
       title,
       content,
       category, // User-selected category

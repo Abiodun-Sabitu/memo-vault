@@ -1,8 +1,6 @@
 import { RiStickyNoteAddFill } from "react-icons/ri";
 
-const Header: React.FC<{
-  notes: any[];
-}> = ({ notes }) => {
+const Header: React.FC<{}> = () => {
   return (
     <header id="header">
       <div className="logo">
@@ -10,7 +8,7 @@ const Header: React.FC<{
         <RiStickyNoteAddFill fill="#E8505B" />
       </div>
 
-      <span
+      <i
         style={{
           marginTop: 5,
           marginLeft: 5,
@@ -18,10 +16,8 @@ const Header: React.FC<{
           fontWeight: "bold",
         }}
       >
-        <small>
-          {notes ? notes.length + " notes created" : "0 notes created"}
-        </small>
-      </span>
+        <small>Big ideas start small</small>
+      </i>
     </header>
   );
 };

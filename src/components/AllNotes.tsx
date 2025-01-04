@@ -59,7 +59,7 @@ const AllNotes: React.FC<{
     setDraggedNoteId(null); // Reset the dragged note
     onReorder(reorderedNotes);
   };
-
+  console.log({ "allNotes.tsx": notes.length });
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "center" }}>
@@ -67,7 +67,7 @@ const AllNotes: React.FC<{
           <Filter
             noteCategories={noteCategories}
             setNotes={setNotes}
-            notes={notes}
+            // notes={notes}
             copiedNotes={copiedNotes}
           />
         </span>

@@ -50,21 +50,44 @@ const Filter: React.FC<{
   };
 
   return (
-    <Dropdown menu={{ items, onClick: handleMenuClick }} trigger={["click"]}>
+    // <Dropdown
+    //   menu={{ items, onClick: handleMenuClick }}
+    //   trigger={["click"]}
+    //   placement="bottom"
+    // >
+    //   <div onClick={(e) => e.preventDefault()}>
+    //     <Space
+    //       style={{
+    //         marginTop: 5,
+    //         marginBottom: 5,
+    //         textDecoration: "underline",
+    //         columnGap: 2,
+    //         color: "rgba(68, 67, 67, 0.77)",
+    //         fontWeight: "bold",
+    //         cursor: "pointer",
+    //         fontSize: 14,
+    //       }}
+    //     >
+    //       Filter By Category
+    //       <RiFilter2Fill style={{ marginTop: 8 }} />
+    //     </Space>
+    //   </div>
+    // </Dropdown>
+    <Dropdown
+      menu={{ items, onClick: handleMenuClick }}
+      trigger={["click"]}
+      placement="bottom"
+    >
       <div onClick={(e) => e.preventDefault()}>
-        <Space
-          style={{
-            marginTop: 5,
-            marginBottom: 5,
-            textDecoration: "underline",
-            columnGap: 2,
-            color: "rgba(68, 67, 67, 0.77)",
-            fontWeight: "bold",
-            cursor: "pointer",
-            fontSize: 14,
-          }}
-        >
-          Filter <RiFilter2Fill style={{ marginTop: 8 }} />
+        <Space className="filter-dropdown-trigger">
+          Filter By Category
+          <RiFilter2Fill
+            style={{
+              marginTop: 2, // Adjusted for better vertical alignment
+              fontSize: 18, // Increased icon size for better visibility
+              color: "#4A4A4A", // Matching the text color
+            }}
+          />
         </Space>
       </div>
     </Dropdown>
