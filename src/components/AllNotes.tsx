@@ -30,7 +30,7 @@ const AllNotes: React.FC<{
 
   // Handle the start of dragging
   const handleDragStart = (id: number) => {
-    console.log("Drag started for note ID:", id);
+    // console.log("Drag started for note ID:", id);
     setDraggedNoteId(id); // Set the dragged note's ID
   };
 
@@ -55,11 +55,11 @@ const AllNotes: React.FC<{
       ...remainingNotes.slice(dropIndex),
     ];
 
-    console.log("Reordered notes:", reorderedNotes);
+    // console.log("Reordered notes:", reorderedNotes);
     setDraggedNoteId(null); // Reset the dragged note
     onReorder(reorderedNotes);
   };
-  console.log({ "allNotes.tsx": notes.length });
+  // console.log({ "allNotes.tsx": notes.length });
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "center" }}>
