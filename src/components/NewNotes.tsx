@@ -87,17 +87,7 @@ const NewNotes: React.FC = () => {
             />
           </Form.Item>
 
-          <Form.Item
-            label="Note Category"
-            layout="vertical"
-            required
-            rules={[
-              {
-                required: true,
-                message: "Please select an option!",
-              },
-            ]}
-          >
+          <Form.Item label="Note Category" layout="vertical">
             <CustomSelect
               categories={categories}
               onCategoriesChange={onCategoriesChange}
