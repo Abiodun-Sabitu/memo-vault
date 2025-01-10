@@ -18,13 +18,34 @@ body {
   height: auto;
 }
 
-.dark_bg {
-  background-color: #1b1a1a;
+/* Default transition for smooth theme changes */
+body {
+  transition: background-color 0.5s ease, color 0.3s ease; /* Smooth transition for theme changes */
 }
 
-.dark_cards {
-  background: #292828;
-  color: #ffffff;
+/* Light mode styles */
+body.light-mode {
+  background-color: #ffffff; /* Light background */
+  color: #000000; /* Dark text for readability */
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background-color: #121212; /* Dark background */
+  color: #ffffff; /* Light text for readability */
+}
+
+/* Card styles for light mode */
+body.light-mode .card {
+  background-color: #f9f9f9; /* Light card background */
+  border-color: #e0e0e0; /* Subtle light border */
+}
+
+/* Card styles for dark mode */
+body.dark-mode .card {
+  background-color: #343434; /* Dark card background */
+  border-color: #2a2a2a; /* Subtle dark border */
+  color: rgba(245, 245, 245, 0.592);
 }
 
 .dark_form {
@@ -219,7 +240,9 @@ input {
 .ant-modal-root .ant-modal-mask {
   background-color: rgba(229, 187, 245, 0.3);
 }
-
+.ant-btn {
+  border: none;
+}
 .filter-dropdown-trigger {
   margin-top: 5px;
   margin-bottom: 5px;
