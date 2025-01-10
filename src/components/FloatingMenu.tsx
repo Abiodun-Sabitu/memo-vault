@@ -1,9 +1,7 @@
 import { CgMenuGridR } from "react-icons/cg";
 import { ConfigProvider, FloatButton } from "antd";
 import { MdMenuBook, MdNoteAdd } from "react-icons/md";
-import { RiMoonClearLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 
 const FloatingMenu: React.FC<{
   isMenuOpen: boolean;
