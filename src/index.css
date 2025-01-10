@@ -48,9 +48,41 @@ body.dark-mode .card {
   color: rgba(245, 245, 245, 0.592);
 }
 
-.dark_form {
-  background: #292828;
-  color: #ffffff;
+body.dark-mode .form {
+  background-color: #343434; /* Dark card background */
+  border-color: #2a2a2a; /* Subtle dark border */
+}
+
+body.dark-mode .ant-form-item-label > label {
+  font-size: medium;
+  font-weight: 500;
+  color: rgba(245, 245, 245, 0.359) !important;
+  /* color: rgba(245, 245, 245, 0.492) !important; */
+}
+
+body.dark-mode .ant-modal .ant-modal-content {
+  background-color: #343434;
+}
+
+body.dark-mode .ant-modal-root .ant-modal-mask {
+  background-color: rgba(11, 11, 11, 0.3);
+}
+
+.form {
+  max-width: 400px;
+  width: 100%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  color: rgba(68, 67, 67, 0.77) !important;
+}
+
+.ant-form-item-label > label {
+  font-size: medium;
+  font-weight: 500;
+
+  color: rgba(68, 67, 67, 0.77) !important;
 }
 
 .logo {
@@ -225,12 +257,6 @@ input {
 
 .ant-color-picker-trigger.ant-color-picker-trigger-active {
   border-color: #a713f6;
-}
-.ant-form-item-label > label {
-  font-size: medium;
-  font-weight: 500;
-  /* color: rgb(68, 67, 67) !important; */
-  color: rgba(68, 67, 67, 0.77) !important;
 }
 
 .ant-modal .ant-modal-content {

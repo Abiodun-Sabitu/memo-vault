@@ -1,4 +1,4 @@
-import { ColorPicker, Flex, Form, Input } from "antd";
+import { ColorPicker, Flex, Form, Input, message } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
 import CustomSelect from "./CustomSelect";
 import CustomButton from "./CustomButton";
@@ -63,8 +63,13 @@ const EditNote: React.FC<{
       color, // User-selected color
     };
 
-    onEdit(editedNoteId, editedNote);
-    setIsModalOpen(false);
+    if (!title || !content || !category) {
+      message.warning("Title, content, and category are required fields!");
+    } else {
+      onEdit(editedNoteId, editedNote);
+      setIsModalOpen(false);
+    }
+
     // navigate("/all-notes");
   };
 
@@ -85,13 +90,7 @@ const EditNote: React.FC<{
           name="newNoteForm"
           layout="vertical"
           onFinish={handleEditNote}
-          style={{
-            maxWidth: "400px",
-            width: "100%",
-            backgroundColor: "white",
-            padding: 0,
-            borderRadius: 8,
-          }}
+          className="form"
         >
           <h3
             style={{
